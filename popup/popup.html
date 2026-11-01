@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Every Second Counts</title>
+  <link rel="stylesheet" href="popup.css">
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <p class="eyebrow">Alive for</p>
+  <p class="age" id="age">00.00000000</p>
+  <p class="unit">years</p>
+  <div class="progress" role="progressbar" aria-label="Share of life lived" aria-valuemin="0" aria-valuemax="100" id="progress">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <dl class="stats">
+    <div><dt>weeks left</dt><dd id="weeks-left">0</dd></div>
+    <div><dt>lived</dt><dd id="percent">0%</dd></div>
+  </dl>
+  <button type="button" id="open" autofocus>Open full dashboard</button>
+</body>
+</html>

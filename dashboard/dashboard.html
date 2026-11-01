@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Every Second Counts</title>
+  <link rel="icon" href="../icons/icon-48.png">
+  <link rel="stylesheet" href="dashboard.css">
+  <script type="module" src="dashboard.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Every Second Counts</span>
+    <nav class="hints" aria-label="Keyboard shortcuts">
+      <button type="button" data-action="zen"><kbd>Z</kbd> breathe</button>
+      <button type="button" data-action="search"><kbd>/</kbd> search</button>
+      <button type="button" data-action="settings"><kbd>S</kbd> settings</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Your age">
+      <p class="eyebrow">You have been alive for</p>
+      <h1 id="age" class="age">00.00000000</h1>
+      <p class="unit">years</p>
+      <p class="seconds"><span id="seconds">0</span> seconds, and counting</p>
+    </section>
+
+    <div class="progress" role="progressbar" aria-label="Share of life lived" aria-valuemin="0" aria-valuemax="100" id="progress">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <section class="stats" aria-label="What remains">
+      <div class="stat stat-primary">
+        <span class="stat-value" id="weeks-left">0</span>
+        <span class="stat-label">weeks left</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="percent">0%</span>
+        <span class="stat-label">of life lived</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="summers">0</span>
+        <span class="stat-label">summers left</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="weekends">0</span>
+        <span class="stat-label">weekends left</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="waking">0</span>
+        <span class="stat-label">waking hours left</span>
+      </div>
+    </section>
+
+    <section class="life" aria-labelledby="life-title">
+      <div class="life-head">
+        <h2 id="life-title">A life in weeks</h2>
+        <ul class="legend">
+          <li><i class="cell lived"></i> lived</li>
+          <li><i class="cell now"></i> this week</li>
+          <li><i class="cell"></i> remaining</li>
+        </ul>
+      </div>
+      <p class="assumption" id="assumption"></p>
+      <div class="grid" id="grid" role="img"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Stored on this device only. No network. No analytics.</footer>
+
+  <div class="tooltip" id="tooltip" role="status" hidden></div>
+
+  <dialog id="settings" class="modal" aria-labelledby="settings-title">
+    <form id="settings-form" method="dialog">
+      <h2 id="settings-title">Settings</h2>
+      <p class="modal-note" id="first-run-note" hidden>Set your birthdate. Until then the dashboard assumes you are 30.</p>
+      <label>
+        <span>Birthdate</span>
+        <input type="date" name="birthdate" required min="1900-01-01">
+      </label>
+      <label>
+        <span>Assumed lifespan (years)</span>
+        <input type="number" name="lifespanYears" required min="1" max="130" step="1">
+      </label>
+      <label>
+        <span>Waking hours per day</span>
+        <input type="number" name="wakingHoursPerDay" required min="1" max="24" step="0.5">
+      </label>
+      <p class="modal-error" id="settings-error" role="alert"></p>
+      <div class="modal-actions">
+        <button type="button" value="cancel" data-close>Cancel <kbd>Esc</kbd></button>
+        <button type="submit" value="save" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="search" class="modal search" aria-label="Search your life">
+    <input id="search-input" type="text" autocomplete="off" spellcheck="false"
+           placeholder="An age, a year, a date, week 1200, or a command"
+           role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list">
+    <ul id="search-results" class="search-results" role="listbox"></ul>
+    <p class="search-hint"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>Enter</kbd> go · <kbd>Esc</kbd> close</p>
+  </dialog>
+
+  <dialog id="zen" class="zen" aria-label="Zen mode, 4-7-8 breathing">
+    <div class="breath">
+      <div class="breath-circle" id="breath-circle"></div>
+      <p class="breath-label" id="breath-label" aria-live="polite">Breathe in</p>
+      <p class="breath-count" id="breath-count">4</p>
+    </div>
+    <p class="zen-hint"><kbd>Z</kbd> or <kbd>Esc</kbd> to return</p>
+  </dialog>
+</body>
+</html>
